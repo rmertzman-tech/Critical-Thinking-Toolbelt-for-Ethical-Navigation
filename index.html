@@ -1,412 +1,297 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Ethics Beyond Boundaries — Course App Suite</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>EBB-CT-2 Critical Thinking Toolbelt for Ethical Navigation</title>
 <style>
-:root{
-  --teal:#0f766e;--teal-dark:#0d5e57;--teal-mid:#14b8a6;--teal-light:#ccfbf1;
-  --amber:#f59e0b;--amber-dark:#92400e;--amber-light:#fef3c7;
-  --navy:#1a2744;--ink:#1f2937;--muted:#6b7280;
-  --border:#e5e7eb;--paper:#f9fafb;
-  --sky:#1e3a8a;--sky-light:#dbeafe;
-  --green:#166534;--green-light:#dcfce7;
-  --red:#dc2626;--red-light:#fee2e2;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Cormorant Garamond','Georgia',serif;background:linear-gradient(135deg,#0a1628 0%,#112240 50%,#0a1628 100%);min-height:100vh;color:var(--ink)}
-.wrap{max-width:1000px;margin:0 auto;padding:1rem 1rem 3rem}
-
-/* HEADER */
-.site-header{text-align:center;padding:2.5rem 1rem 2rem;color:white}
-.site-header .label{font-family:'JetBrains Mono',monospace;font-size:.7rem;text-transform:uppercase;letter-spacing:.14em;color:rgba(20,184,166,.75);margin-bottom:.5rem}
-.site-header h1{font-size:2.2rem;font-weight:700;color:white;margin-bottom:.4rem;line-height:1.15}
-.site-header .sub{font-size:1rem;color:rgba(255,255,255,.48);font-style:italic;margin-bottom:1rem}
-.site-header .desc{max-width:640px;margin:0 auto;font-size:.9rem;color:rgba(255,255,255,.55);line-height:1.7}
-
-/* CHAPTER GROUPS */
-.chapter-group{margin-bottom:2rem}
-.group-label{font-family:'JetBrains Mono',monospace;font-size:.68rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(20,184,166,.65);margin-bottom:.6rem;padding-left:.1rem}
-.app-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.75rem}
-
-/* APP CARDS */
-.app-card{background:white;border-radius:.75rem;overflow:hidden;text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:transform .18s,box-shadow .18s;box-shadow:0 2px 12px rgba(0,0,0,.15)}
-.app-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.25)}
-.app-card-head{padding:.9rem 1.1rem .7rem;display:flex;align-items:flex-start;gap:.7rem}
-.app-card-icon{font-size:1.5rem;line-height:1;flex-shrink:0;margin-top:.1rem}
-.app-card-title{font-size:1rem;font-weight:700;color:var(--navy);line-height:1.25;margin-bottom:.15rem}
-.app-card-type{font-family:'JetBrains Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
-.app-card-body{padding:0 1.1rem .9rem;flex:1}
-.app-card-desc{font-size:.82rem;color:var(--muted);line-height:1.6}
-.app-card-footer{padding:.55rem 1.1rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
-.app-card-tag{font-family:'JetBrains Mono',monospace;font-size:.58rem;text-transform:uppercase;letter-spacing:.06em;padding:.18rem .5rem;border-radius:.25rem}
-.tag-case{background:var(--teal-light);color:var(--teal-dark)}
-.tag-companion{background:var(--sky-light);color:var(--sky)}
-.tag-simulation{background:var(--amber-light);color:var(--amber-dark)}
-.tag-reference{background:var(--paper);color:var(--muted);border:1px solid var(--border)}
-.tag-orientation{background:var(--green-light);color:var(--green)}
-.app-card-arrow{font-size:.9rem;color:var(--teal-mid)}
-
-/* ACCENT BORDERS BY CHAPTER */
-.ch-orient .app-card-head{border-top:3px solid #0284c7}
-.ch-1 .app-card-head{border-top:3px solid #7c3aed}
-.ch-2 .app-card-head{border-top:3px solid #dc2626}
-.ch-3 .app-card-head{border-top:3px solid #0f766e}
-.ch-4 .app-card-head{border-top:3px solid #ca8a04}
-.ch-5 .app-card-head{border-top:3px solid #166534}
-.ch-6 .app-card-head{border-top:3px solid #0369a1}
-.ch-7 .app-card-head{border-top:3px solid #9333ea}
-.ch-8 .app-card-head{border-top:3px solid #92400e}
-.ch-9 .app-card-head{border-top:3px solid #0891b2}
-.ch-10 .app-card-head{border-top:3px solid #4f46e5}
-.ch-interlude .app-card-head{border-top:3px solid #0d5e57}
-.ch-rustbelt .app-card-head{border-top:3px solid #b45309}
-.ch-prologue .app-card-head{border-top:3px solid #6d28d9}
-.ch-11 .app-card-head{border-top:3px solid #0f766e}
-.ch-12 .app-card-head{border-top:3px solid #dc2626}
-.ch-13 .app-card-head{border-top:3px solid #1d4ed8}
-.ch-14 .app-card-head{border-top:3px solid #7c3aed}
-.ch-tools .app-card-head{border-top:3px solid #374151}
-
-/* DIVIDER */
-.divider{height:1px;background:rgba(255,255,255,.07);margin:1.5rem 0}
-
-/* PREDICTION CHAIN */
-.chain-bar{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:.65rem;padding:1rem 1.25rem;margin-bottom:1.5rem}
-.chain-bar h3{font-size:.75rem;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.1em;color:rgba(20,184,166,.65);margin-bottom:.65rem}
-.chain-row{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
-.chain-node{font-family:'JetBrains Mono',monospace;font-size:.65rem;background:rgba(255,255,255,.07);color:rgba(255,255,255,.65);padding:.22rem .55rem;border-radius:.3rem;white-space:nowrap}
-.chain-arrow{color:rgba(20,184,166,.5);font-size:.85rem}
+  :root{
+    --bg:#f7f8fb; --panel:#ffffff; --ink:#172033; --muted:#5b6475; --accent:#285c7a;
+    --accent2:#0f766e; --line:#d9e2ec; --soft:#eef6f8; --warn:#fff7ed; --good:#ecfdf5;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}
+  header{background:linear-gradient(135deg,#18354b,#286079);color:white;padding:2.2rem 1rem}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 1rem}
+  h1{font-size:clamp(1.8rem,3.5vw,3rem);line-height:1.05;margin:.2rem 0 .6rem}
+  h2{font-size:1.55rem;margin:2rem 0 1rem;color:#15364a;border-bottom:2px solid var(--line);padding-bottom:.35rem}
+  h3{font-size:1.15rem;margin:1rem 0 .4rem;color:#17384d}
+  h4{margin:.8rem 0 .25rem;color:#24465a}
+  p{margin:.55rem 0}
+  a{color:#155e75}
+  .subtitle{font-size:1.05rem;opacity:.95;max-width:900px}
+  .principle{margin-top:1.2rem;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);border-left:6px solid #c7f9ff;padding:1rem;border-radius:14px;font-size:1.05rem}
+  .toolbar{position:sticky;top:0;z-index:10;background:rgba(247,248,251,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding:.7rem 0}
+  .toolbar .row{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
+  input[type="search"]{flex:1;min-width:220px;padding:.65rem .75rem;border:1px solid var(--line);border-radius:10px;font-size:1rem;background:white;color:var(--ink)}
+  button,.btn{border:0;background:var(--accent);color:#fff;padding:.65rem .85rem;border-radius:10px;cursor:pointer;font-weight:650;text-decoration:none;display:inline-block}
+  button.secondary{background:#e7eef3;color:#17384d;border:1px solid var(--line)}
+  button.green{background:var(--accent2)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:1rem;box-shadow:0 1px 4px rgba(15,23,42,.05)}
+  .notice{background:var(--soft);border-left:5px solid var(--accent2);padding:1rem;border-radius:12px;margin:1rem 0}
+  .warn{background:var(--warn);border-left:5px solid #ea580c;padding:1rem;border-radius:12px;margin:1rem 0}
+  .small{font-size:.92rem;color:var(--muted)}
+  .tag{display:inline-block;background:#e7eef3;border:1px solid var(--line);border-radius:999px;padding:.25rem .55rem;margin:.15rem;font-size:.9rem;color:#18354b}
+  details{background:var(--panel);border:1px solid var(--line);border-radius:14px;margin:.65rem 0;box-shadow:0 1px 3px rgba(15,23,42,.04)}
+  summary{cursor:pointer;padding:.85rem 1rem;font-weight:750;color:#17384d;list-style:none}
+  summary::-webkit-details-marker{display:none}
+  summary:before{content:"▸";display:inline-block;margin-right:.45rem;transition:.15s}
+  details[open] summary:before{transform:rotate(90deg)}
+  .detail-body{padding:0 1rem 1rem;border-top:1px solid var(--line)}
+  blockquote{border-left:4px solid var(--line);padding:.4rem .85rem;margin:.7rem 0;background:#fafcff;color:#263246}
+  table{width:100%;border-collapse:collapse;background:white;border-radius:12px;overflow:hidden;margin:.8rem 0}
+  th,td{border:1px solid var(--line);padding:.65rem;vertical-align:top;text-align:left}
+  th{background:#eef6f8;color:#17384d}
+  textarea{width:100%;min-height:90px;border:1px solid var(--line);border-radius:10px;padding:.7rem;font:inherit;background:#fff;color:var(--ink)}
+  .practice-sheet label{font-weight:700;display:block;margin-top:.8rem;color:#17384d}
+  .hide{display:none!important}
+  .toc a{display:inline-block;margin:.2rem .35rem .2rem 0;padding:.35rem .55rem;border:1px solid var(--line);border-radius:999px;background:white;text-decoration:none;color:#17384d;font-size:.92rem}
+  footer{margin-top:2rem;padding:2rem 0;background:#e7eef3;color:#263246}
+  @media print{
+    .toolbar, button, .no-print{display:none!important}
+    body{background:white}
+    header{background:white;color:black;padding:1rem 0;border-bottom:2px solid #000}
+    .principle{border:1px solid #999;color:black;background:white}
+    details{break-inside:avoid;box-shadow:none}
+    details:not([open]) .detail-body{display:block}
+    summary:before{display:none}
+  }
 </style>
 </head>
 <body>
-<div class="wrap">
-
-<div class="site-header">
-  <div class="label">Saint Petersburg College &middot; Ethics Institute</div>
-  <h1>Ethics Beyond Boundaries</h1>
-  <div class="sub">Interactive App Suite &middot; Dr. Robert Mertzman</div>
-  <div class="desc">A complete set of simulation apps, case explorers, and companion reading tools for the EBB course. Each app connects to the UCP simulation engine and stores journal predictions for the next chapter.</div>
-</div>
-
-<!-- PREDICTION CHAIN -->
-<div class="chain-bar">
-  <h3>Prediction Chain &mdash; Journal Q5 flows chapter to chapter</h3>
-  <div class="chain-row">
-    <span class="chain-node">Orientation → orient_cq5</span>
-    <span class="chain-arrow">→</span>
-    <span class="chain-node">Ch2 → ch2_cq5</span>
-    <span class="chain-arrow">→</span>
-    <span class="chain-node">Ch3 → ch3_cq5</span>
-    <span class="chain-arrow">→</span>
-    <span class="chain-node">Ch4 → ch4_cq5</span>
-    <span class="chain-arrow">→</span>
-    <span class="chain-node">Ch5 → ch5_cq5</span>
-    <span class="chain-arrow">→</span>
-    <span class="chain-node">Ch6 → ch6_cq5</span>
-    <span class="chain-arrow">→</span>
-    <span class="chain-node">Ch7 → ch7_cq5</span>
-    <span class="chain-arrow">→</span>
-    <span class="chain-node">Ch8 → ch8_cq5</span>
-    <span class="chain-arrow">→</span>
-    <span class="chain-node">Rust Belt → rust_belt_cq5</span>
+<header>
+  <div class="wrap">
+    <div class="small" style="color:#dff7ff;">Fall 2026 Digital Ecosystem Standard</div>
+    <h1>EBB-CT-2: Critical Thinking Toolbelt for Ethical Navigation</h1>
+    <p class="subtitle">A course-wide reference connecting traditional critical thinking vocabulary with EBB practices: Field Scans, SAGE, Move Cards, MCCTS, Public Reasoning Bridge, Formal Domination Audit, Phenomenological Veto Check, and Navigator reflection.</p>
+    <div class="principle"><strong>Framing Principle:</strong> EBB gives students a map of ethical life. Traditional critical thinking gives them tools to test the map, question assumptions, compare possible routes, and justify their next move.</div>
   </div>
-</div>
+</header>
 
-<!-- ORIENTATION -->
-<div class="chapter-group ch-orient">
-  <div class="group-label">Orientation</div>
-  <div class="app-grid">
-    <a class="app-card" href="ebb-orientation-app.html">
-      <div class="app-card-head"><div class="app-card-icon">🗺️</div><div><div class="app-card-title">Course Orientation</div><div class="app-card-type">Interactive Map</div></div></div>
-      <div class="app-card-body"><div class="app-card-desc">The watershed model, PRF Peak Calculator, course arc, and Journal Q4 prediction for Chapter 2. Start here before Chapter 1.</div></div>
-      <div class="app-card-footer"><span class="app-card-tag tag-orientation">Orientation</span><span class="app-card-arrow">→</span></div>
-    </a>
-    <a class="app-card" href="day1-orientation.html">
-      <div class="app-card-head"><div class="app-card-icon">📋</div><div><div class="app-card-title">Day 1 Orientation</div><div class="app-card-type">First Class</div></div></div>
-      <div class="app-card-body"><div class="app-card-desc">First-day introduction to the course framework, PRF concept, and OS1/OS2 distinction.</div></div>
-      <div class="app-card-footer"><span class="app-card-tag tag-orientation">Day 1</span><span class="app-card-arrow">→</span></div>
-    </a>
+<nav class="toolbar no-print">
+  <div class="wrap row">
+    <input id="searchBox" type="search" placeholder="Search terms, fallacies, examples, or EBB concepts..." aria-label="Search resource" />
+    <button onclick="expandAll()">Expand all</button>
+    <button class="secondary" onclick="collapseAll()">Collapse all</button>
+    <button class="green" onclick="window.print()">Print / Save PDF</button>
   </div>
-</div>
+</nav>
 
-<!-- CHAPTER 1 -->
-<div class="chapter-group ch-1">
-  <div class="group-label">Chapter 1 &mdash; The PRF</div>
-  <div class="app-grid">
-    <a class="app-card" href="chapter1-lens-app.html">
-      <div class="app-card-head"><div class="app-card-icon">🔭</div><div><div class="app-card-title">Your Interpretive Lens</div><div class="app-card-type">Companion App</div></div></div>
-      <div class="app-card-body"><div class="app-card-desc">Build your Phenomenological Reference Framework. How your PRF formed, what it makes visible, and what it makes hard to see.</div></div>
-      <div class="app-card-footer"><span class="app-card-tag tag-companion">Companion</span><span class="app-card-arrow">→</span></div>
-    </a>
+<main class="wrap">
+  <section class="card" style="margin-top:1rem;">
+    <h2>How to Use This Resource</h2>
+    <p>The Critical Thinking Toolbelt is a course-long reference for the reasoning skills used in EBB. It explains traditional critical thinking terms such as claim, assumption, inference, evidence, deduction, induction, abduction, validity, soundness, fallacy, counterexample, objection, and reply. These terms help you examine how you are thinking before you decide what to believe or do.</p>
+    <p>Use this resource when you complete Field Scans, create Move Cards, prepare MCCTS arguments, write reflections, participate in discussion, or revise your public reasoning. The goal is not to memorize vocabulary for its own sake. The goal is to use critical thinking tools to notice assumptions, test reasons, compare possible moves, repair weak reasoning, and make more responsible ethical judgments.</p>
+    <div class="notice"><strong>Relationship to FDN-1:</strong> FDN-1 introduces the practice on Day One through an interactive lab. EBB-CT-2 supports the practice all semester as a reference, quiz review, workbook support, and MCCTS/Navigator bridge.</div>
+    <div class="toc">
+      <a href="#terms">Core Terms</a><a href="#fallacies">Fallacies</a><a href="#fieldscan">Field Scan Check</a><a href="#moves">Move Cards</a><a href="#sage">SAGE</a><a href="#mccts">MCCTS</a><a href="#chapters">Chapter Map</a><a href="#quiz">Quiz Bank</a><a href="#practice">Practice Sheet</a>
+    </div>
+  </section>
+
+  <section id="terms">
+    <h2>Core Critical Thinking Terms</h2>
+    <div id="termList" class="terms"></div>
+  </section>
+
+  <section id="fallacies">
+    <h2>Common Fallacies as Ethical Field Distortions</h2>
+    <p>A <strong>fallacy</strong> is a common pattern of weak or misleading reasoning. In EBB, fallacies are not merely textbook mistakes. They are often <strong>field distortions</strong>: they narrow perception, misdescribe agency, suppress relevant voices, or make poor Move Cards seem reasonable.</p>
+    <div id="fallacyList"></div>
+  </section>
+
+  <section id="fieldscan" class="card">
+    <h2>The Critical Thinking Check for Field Scans</h2>
+    <p>Each Field Scan can include a short Critical Thinking Check.</p>
+    <ol>
+      <li><strong>My current claim or concern is:</strong> What am I thinking, concluding, or worrying about?</li>
+      <li><strong>My reasons are:</strong> Why do I think this?</li>
+      <li><strong>My evidence is:</strong> What supports this?</li>
+      <li><strong>My assumptions are:</strong> What am I taking for granted?</li>
+      <li><strong>My inference is:</strong> How am I moving from what I notice to what I conclude?</li>
+      <li><strong>An alternative explanation is:</strong> What else might be going on?</li>
+      <li><strong>A possible fallacy or distortion is:</strong> Is there any weak reasoning, bias, or field distortion in my first reaction?</li>
+      <li><strong>A more careful version of my claim is:</strong> How should I revise the claim after thinking more carefully?</li>
+    </ol>
+  </section>
+
+  <section id="moves" class="card">
+    <h2>Critical Thinking and Move Cards</h2>
+    <p>A Move Card is a possible next action. Each Move Card should be tested with critical thinking.</p>
+    <div class="grid">
+      <div><strong>Possible move</strong><br/>What could I do?</div>
+      <div><strong>Reason for the move</strong><br/>Why might this be a good move?</div>
+      <div><strong>Type of reasoning</strong><br/>Deduction / induction / abduction / analogy / practical judgment.</div>
+      <div><strong>Fields affected</strong><br/>Which life-fields would this move affect?</div>
+      <div><strong>Possible risk</strong><br/>What could go wrong?</div>
+      <div><strong>Objection</strong><br/>What would a thoughtful critic say?</div>
+      <div><strong>Reply or revision</strong><br/>How could I improve the move?</div>
+      <div><strong>Decision</strong><br/>Keep / revise / delay / reject.</div>
+    </div>
+  </section>
+
+  <section id="sage">
+    <h2>Critical Thinking and SAGE</h2>
+    <div class="grid">
+      <div class="card"><h3>See</h3><p><strong>Skills:</strong> noticing salience; identifying assumptions; defining the issue; distinguishing observation from interpretation.</p><blockquote>What is happening? What am I noticing first? What might I be missing?</blockquote></div>
+      <div class="card"><h3>Analyze</h3><p><strong>Skills:</strong> identifying reasons; evaluating evidence; testing inferences; considering stakeholders; identifying fallacies.</p><blockquote>What reasons support this interpretation? What evidence matters? What assumptions shape the case?</blockquote></div>
+      <div class="card"><h3>Generate</h3><p><strong>Skills:</strong> creating alternatives; analogical reasoning; abduction; counterexample testing; Move Card design.</p><blockquote>What options are possible? What else might explain this? What would someone with another PRF suggest?</blockquote></div>
+      <div class="card"><h3>Engage</h3><p><strong>Skills:</strong> practical judgment; argument revision; objection and reply; public reasoning; accountability.</p><blockquote>What move should I try? How should I explain it? What feedback would make me revise?</blockquote></div>
+    </div>
+  </section>
+
+  <section id="mccts" class="card">
+    <h2>Critical Thinking and MCCTS</h2>
+    <p>MCCTS helps students move from private reflection to public argument using Toulmin-style structure.</p>
+    <table>
+      <thead><tr><th>Element</th><th>Question</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td>Claim</td><td>What are you arguing?</td><td>The hospital should create a protected voice channel for nurses.</td></tr>
+        <tr><td>Grounds</td><td>What facts, observations, or case details support the claim?</td><td>Nurses may notice safety problems before administrators do.</td></tr>
+        <tr><td>Warrant</td><td>Why do those grounds support the claim?</td><td>People closest to a risk often have morally relevant knowledge.</td></tr>
+        <tr><td>Backing</td><td>What ethical theory, concept, or course idea supports the warrant?</td><td>Epistemic justice, care ethics, and institutional responsibility.</td></tr>
+        <tr><td>Qualifier</td><td>How strong or limited is the claim?</td><td>This does not mean every warning is automatically correct.</td></tr>
+        <tr><td>Rebuttal</td><td>What objection or complication should be considered?</td><td>Some warnings may be mistaken or incomplete.</td></tr>
+        <tr><td>Reply</td><td>How would you answer the objection or revise your claim?</td><td>The channel should include review standards, not automatic acceptance.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="chapters">
+    <h2>Provisional Chapter Integration Map</h2>
+    <div class="warn"><strong>Course sequencing note:</strong> This map is provisional. Chapters 1–5 reflect the current working structure. Later placements should be adjusted to match the adopted Fall 2026 course sequence.</div>
+    <div id="chapterMap"></div>
+  </section>
+
+  <section id="quiz">
+    <h2>Short Quiz Bank Starter</h2>
+    <details open><summary>A. Identify the Term</summary><div class="detail-body" id="quizA"></div></details>
+    <details><summary>B. Apply the Concept</summary><div class="detail-body" id="quizB"></div></details>
+    <details><summary>C. Repair the Reasoning — Worked Examples</summary><div class="detail-body" id="quizC"></div></details>
+  </section>
+
+  <section id="practice" class="card practice-sheet">
+    <h2>Student Practice Sheet</h2>
+    <p>Choose one situation from school, work, family, friendship, technology, health, or community. You may type here and print or save as PDF. This page stores work only in this browser while open; nothing is uploaded.</p>
+    <label>1. Field Scan — What is happening?</label><textarea></textarea>
+    <label>2. Claim — What do I currently think about it?</label><textarea></textarea>
+    <label>3. Assumption — What am I taking for granted?</label><textarea></textarea>
+    <label>4. Evidence — What supports my view?</label><textarea></textarea>
+    <label>5. Inference — How am I moving from what I notice to what I conclude?</label><textarea></textarea>
+    <label>6. Alternative Explanation — What else might explain the situation?</label><textarea></textarea>
+    <label>7. Possible Fallacy or Distortion — Am I using weak reasoning anywhere?</label><textarea></textarea>
+    <label>8. Move Cards — List three possible next moves.</label><textarea></textarea>
+    <label>9. Objection — What might be wrong with my preferred move?</label><textarea></textarea>
+    <label>10. Current Move Plan — What small responsible step will I try now?</label><textarea></textarea>
+    <p class="no-print"><button class="green" onclick="copyPractice()">Copy Practice Sheet Text</button> <button class="secondary" onclick="clearPractice()">Clear typed practice</button></p>
+  </section>
+
+  <section class="card">
+    <h2>Canvas Page / Workbook Module Routing</h2>
+    <div class="grid">
+      <div><h3>Canvas Page Reference</h3><p>A searchable course-wide reference with clickable core terms, fallacy examples, MCCTS connection, quiz bank, and printable practice sheet.</p></div>
+      <div><h3>Chapter Workbook Mini-Labs</h3><p>Each chapter workbook can include one 3–4 minute critical thinking mini-lab tied to that chapter’s CT focus.</p></div>
+      <div><h3>Paper-Track Practice Sheet</h3><p>The Student Practice Sheet can support students who are not using the Navigator or who prefer a paper-based critical thinking path.</p></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <h2 style="border:0;margin-top:0;color:#17384d;">Final Principle</h2>
+    <p><strong>EBB gives students a map of ethical life. Traditional critical thinking gives them tools to test the map, question assumptions, compare possible routes, and justify their next move.</strong></p>
+    <p>The goal is not only to think more clearly. The goal is to live, deliberate, communicate, and act with greater ethical responsibility.</p>
   </div>
-</div>
+</footer>
 
-<!-- CHAPTER 2 -->
-<div class="chapter-group ch-2">
-  <div class="group-label">Chapter 2 &mdash; The Challenger Disaster</div>
-  <div class="app-grid">
-    <a class="app-card" href="challenger-case-explorer.html">
-      <div class="app-card-head"><div class="app-card-icon">🚀</div><div><div class="app-card-title">Challenger Case Explorer</div><div class="app-card-type">Case Explorer + Simulation</div></div></div>
-      <div class="app-card-body"><div class="app-card-desc">Roger Boisjoly and the suppression gap. Eight tabs: Discovery through Aftermath. UCP Simulation: Config A (Thiokol) vs. Config B (protected channel). Clickable metric explanations.</div></div>
-      <div class="app-card-footer"><span class="app-card-tag tag-case">Case Explorer</span><span class="app-card-arrow">→</span></div>
-    </a>
-    <a class="app-card" href="chapter2-telescope-app.html">
-      <div class="app-card-head"><div class="app-card-icon">📡</div><div><div class="app-card-title">Chapter 2 Companion</div><div class="app-card-type">Companion App</div></div></div>
-      <div class="app-card-body"><div class="app-card-desc">The suppression gap concept, institutional architecture, and the ethics of speaking truth to power.</div></div>
-      <div class="app-card-footer"><span class="app-card-tag tag-companion">Companion</span><span class="app-card-arrow">→</span></div>
-    </a>
-  </div>
-</div>
+<script>
+const terms = [
+ {t:'Claim',d:'A claim is something someone says is true, reasonable, right, wrong, important, or worth doing.',ex:'“The hospital should listen more carefully to nurses’ safety concerns.”',ebb:'A claim often becomes the starting point for MCCTS or the Public Reasoning Bridge.',q:'What am I claiming or concluding about this situation?'},
+ {t:'Premise',d:'A premise is a reason offered to support a conclusion.',ex:'“Nurses are often closest to patient care,” and “They may notice safety problems before administrators do.”',ebb:'Premises are found in Field Scans, case evidence, lived experience, testimony, institutional data, and ethical principles.',q:'What reasons support my claim?'},
+ {t:'Conclusion',d:'A conclusion is what the reasoning is trying to establish.',ex:'“Therefore, the institution needs a protected reporting channel.”',ebb:'A conclusion may become a Move Card, repair proposal, MCCTS claim, or public reasoning statement.',q:'What am I being led to think or do?'},
+ {t:'Assumption',d:'An assumption is something taken for granted, often without being directly stated.',ex:'“If someone does not answer my message quickly, they must not care.” Hidden assumption: quick response equals care.',ebb:'PRFs contain assumptions about what matters, what counts as respect, evidence, harm, and appropriate action.',q:'What am I assuming here, and how might someone with a different PRF see it differently?'},
+ {t:'Reason',d:'A reason is an explanation for why a claim should be accepted or an action should be taken.',ex:'“We should delay the launch because the safety evidence is uncertain.”',ebb:'Reasons help move from private perception to public justification.',q:'What reasons would I give someone else for this move?'},
+ {t:'Evidence',d:'Evidence is information that supports or challenges a claim.',ex:'“The previous test results show repeated failure under cold conditions.”',ebb:'Evidence can include data, testimony, patterns, documents, observation, experience, history, and institutional records.',q:'What evidence do I have? What evidence would I need?'},
+ {t:'Inference',d:'An inference is the movement from one thought, observation, or reason to another.',ex:'“The test failed in cold conditions, so the system may be unsafe in cold weather.”',ebb:'Many ethical mistakes happen when we move too quickly from salience to conclusion.',q:'How am I getting from what I noticed to what I concluded?'},
+ {t:'Deduction',d:'Deduction is reasoning where, if the premises are true, the conclusion must be true.',ex:'All students in this course must complete the final reflection. I am a student in this course. Therefore, I must complete the final reflection.',ebb:'Deduction is useful for rules, policies, definitions, rights, duties, and formal arguments.',q:'Does this conclusion necessarily follow if the premises are true?'},
+ {t:'Validity',d:'A deductive argument is valid when the conclusion logically follows from the premises. Validity is about structure, not truth.',ex:'All cats are mammals. Luna is a cat. Therefore, Luna is a mammal.',ebb:'Validity helps students test whether a conclusion follows from a stated rule, principle, or definition.',q:'Does the reasoning structure work?'},
+ {t:'Soundness',d:'A deductive argument is sound when it is valid and its premises are true.',ex:'All humans need oxygen. Maria is human. Therefore, Maria needs oxygen.',ebb:'Some institutional arguments may be valid in form but unsound because their premises are false, incomplete, or morally distorted.',q:'Are the premises actually true?'},
+ {t:'Induction',d:'Induction reasons from repeated examples, patterns, or observations to a probable conclusion.',ex:'Every time I wait until the last minute, my work suffers. So if I wait again, my work will probably suffer.',ebb:'Induction is useful for noticing patterns in Field Scans and Development Arc reflections.',q:'What pattern do I see, and how strong is it?'},
+ {t:'Abduction',d:'Abduction is reasoning to the best explanation.',ex:'I feel anxious every Sunday evening. The best explanation may be that I am worried about the coming week and have not planned my responsibilities.',ebb:'Abduction helps students interpret complex situations where no single piece of evidence gives certainty.',q:'What is the best explanation for what is happening? What are two other possible explanations?'},
+ {t:'Analogy',d:'An analogy compares one case to another to help understand it.',ex:'“This workplace problem is like the Challenger case because people saw a danger but did not have enough protected voice to stop the decision.”',ebb:'Analogies help students transfer learning from one case to another, but they must be used carefully.',q:'How is this case like another case? How is it different?'},
+ {t:'Counterexample',d:'A counterexample is a case that challenges or disproves a general claim.',ex:'Claim: “People always act selfishly.” Counterexample: “Someone risks their safety to help a stranger.”',ebb:'Counterexamples help students avoid overgeneralizing from one experience, institution, formal tool, or PRF.',q:'What case would challenge my claim?'},
+ {t:'Phenomenological Veto',d:'The Phenomenological Veto is the principle that when a formal model, metric, score, label, or institutional description misdescribes lived experience in a morally significant way, the formal description must be questioned and revised.',ex:'A medical chart says a patient is functioning normally, but the patient reports ongoing pain, exhaustion, or inability to perform ordinary activities.',ebb:'The Phenomenological Veto protects persons from Formal Domination. In CT terms, first-person testimony or lived agency can function as a counterexample to a formal claim.',q:'What lived reality should challenge or correct the formal description?'},
+ {t:'Ambiguity',d:'Ambiguity occurs when a word, phrase, or claim has more than one possible meaning.',ex:'“Fairness means treating everyone the same” could mean equal treatment, opportunity, outcome, proportional treatment, or need-sensitive treatment.',ebb:'Ethical disagreement often involves ambiguous terms such as freedom, justice, harm, responsibility, respect, care, dignity, fairness, and agency.',q:'What does this key word mean in this situation?'},
+ {t:'Relevance',d:'A reason is relevant when it actually supports or challenges the claim being discussed.',ex:'“She dresses casually, so her safety warning should not be trusted.” This is irrelevant to whether the warning is accurate.',ebb:'Irrelevant reasons can distort moral salience and contribute to epistemic injustice, suppression gaps, and formal domination.',q:'Does this reason actually matter to the claim?'},
+ {t:'Objection',d:'An objection is a reason someone might give against a claim, argument, or proposed action.',ex:'“A protected reporting channel may be abused or may slow urgent decisions.”',ebb:'Objections strengthen ethical reasoning by forcing students to examine limits, risks, and alternative perspectives.',q:'What would a thoughtful critic say against my claim?'},
+ {t:'Reply',d:'A reply responds to an objection.',ex:'“The reporting channel can include standards for evidence and urgency, so it protects voice without stopping all decisions.”',ebb:'Replying to objections helps move OS1 conflict toward OS2 public reasoning.',q:'How can I revise or defend my claim in light of the objection?'}
+];
 
-<!-- CHAPTER 3 -->
-<div class="chapter-group ch-3">
-  <div class="group-label">Chapter 3 &mdash; Father Hanna</div>
-  <div class="app-grid">
-    <a class="app-card" href="hanna-case-explorer.html">
-      <div class="app-card-head"><div class="app-card-icon">⛪</div><div><div class="app-card-title">Hanna Case Explorer</div><div class="app-card-type">Case Explorer + Simulation</div></div></div>
-      <div class="app-card-body"><div class="app-card-desc">Father Saad Sirop Hanna — maintaining identity under maximum institutional entropy. Identity Kernel, BioBond, and the limits of individual courage.</div></div>
-      <div class="app-card-footer"><span class="app-card-tag tag-case">Case Explorer</span><span class="app-card-arrow">→</span></div>
-    </a>
-    <a class="app-card" href="chapter3-commonwealth-app.html">
-      <div class="app-card-head"><div class="app-card-icon">🏛️</div><div><div class="app-card-title">Chapter 3 Companion</div><div class="app-card-type">Companion App</div></div></div>
-      <div class="app-card-body"><div class="app-card-desc">Building commonwealth across difference. The conditions for ethical functioning under extreme constraint.</div></div>
-      <div class="app-card-footer"><span class="app-card-tag tag-companion">Companion</span><span class="app-card-arrow">→</span></div>
-    </a>
-  </div>
-</div>
+const fallacies = [
+ {t:'Ad Hominem',d:'Attacks the person instead of addressing the claim.',ex:'“We should not listen to her safety warning because she is always negative.”',weak:'The person’s attitude does not automatically show the warning is false.',ebb:'Ad hominem reasoning can produce epistemic injustice and suppression gaps.',q:'What is the claim, and what evidence supports or challenges it, apart from how I feel about the person?'},
+ {t:'Straw Man',d:'Misrepresents someone’s view so it is easier to reject.',ex:'“You want safer working conditions? So you must want the company to shut down.”',weak:'It replaces the actual claim with an exaggerated version.',ebb:'Straw man reasoning blocks PRF translation and prevents OS2 cooperation.',q:'What is the strongest fair version of the other person’s claim?'},
+ {t:'False Dilemma',d:'Presents only two options when more possibilities exist.',ex:'“Either you support the policy completely, or you do not care about safety.”',weak:'There may be other options, such as revising the policy.',ebb:'False dilemmas reduce agency by shrinking the Move Card space.',q:'What third or fourth option might be possible?'},
+ {t:'Slippery Slope',d:'Assumes one step will inevitably lead to extreme consequences without enough support.',ex:'“If we allow one exception, then all standards will collapse.”',weak:'It assumes an inevitable chain reaction without showing why each step must happen.',ebb:'Slippery slope reasoning can be driven by fear salience and threat amplification.',q:'What evidence shows that this chain of consequences is likely?'},
+ {t:'Hasty Generalization',d:'Draws a broad conclusion from too little evidence.',ex:'“One student cheated, so students cannot be trusted.”',weak:'One case does not justify a conclusion about all students.',ebb:'Hasty generalization can turn limited experience into formal domination through labels or policies.',q:'How much evidence is enough for this general claim?'},
+ {t:'Appeal to Authority',d:'Treats authority as decisive even when the authority may be wrong, irrelevant, or unchallenged.',ex:'“The software ranked this applicant low, so the applicant must be weak.”',weak:'The system may be using incomplete or biased criteria.',ebb:'Appeal to authority can become formal domination when the tool cannot be challenged.',q:'Is this authority reliable, relevant, and open to correction?'},
+ {t:'Appeal to Emotion',d:'Uses emotional force to replace reasons.',ex:'“You should support this policy because only bad people would oppose it.”',weak:'It pressures agreement without giving adequate reasons.',ebb:'Emotion can be morally important, but it should be treated as a signal to examine, not a substitute for judgment.',q:'What reasons support the claim once emotional pressure is removed?'},
+ {t:'Confirmation Bias',d:'Notices evidence that supports what we already believe and ignores evidence that challenges it.',ex:'“I already think this person is careless, so I only notice their mistakes.”',weak:'It filters evidence unfairly.',ebb:'Confirmation bias is a PRF filtering problem. It shapes salience before reasoning begins.',q:'What evidence would I notice if I did not already believe this?'},
+ {t:'Category Error',d:'Treats something as belonging to the wrong kind of thing.',ex:'“The engagement receipt proves the student had deep moral growth.”',weak:'The receipt can show participation, but it cannot prove inner transformation.',ebb:'Category errors are central to formal domination when a score, label, or metric is treated as if it captures lived agency.',q:'What kind of thing is this tool able to show, and what kind of thing can it not show?'}
+];
 
-<!-- CHAPTER 4 -->
-<div class="chapter-group ch-4">
-  <div class="group-label">Chapter 4 &mdash; Wangari Maathai</div>
-  <div class="app-grid">
-    <a class="app-card" href="maathai-case-explorer.html">
-      <div class="app-card-head"><div class="app-card-icon">🌳</div><div><div class="app-card-title">Maathai Case Explorer</div><div class="app-card-type">Case Explorer + Simulation</div></div></div>
-      <div class="app-card-body"><div class="app-card-desc">Wangari Maathai and the Green Belt Movement. Coordination architecture, OS2 Bridge, and building institutions that outlast their founders.</div></div>
-      <div class="app-card-footer"><span class="app-card-tag tag-case">Case Explorer</span><span class="app-card-arrow">→</span></div>
-    </a>
-    <a class="app-card" href="chapter4-maathai-app.html">
-      <div class="app-card-head"><div class="app-card-icon">🌿</div><div><div class="app-card-title">Chapter 4 Companion</div><div class="app-card-type">Companion App</div></div></div>
-      <div class="app-card-body"><div class="app-card-desc">Institutional design, capability-based coordination, and the ethics of building structures that distribute agency.</div></div>
-      <div class="app-card-footer"><span class="app-card-tag tag-companion">Companion</span><span class="app-card-arrow">→</span></div>
-    </a>
-  </div>
-</div>
+const chapters = [
+ {t:'Chapter 1 — Ethical Attention, EBB Orientation, and Navigator Practice',focus:'claim; assumption; salience; observation vs. interpretation',practice:'Identify one ethical claim you make quickly. What assumption supports it?',workbook:'Field Scan introduction and first Public Reasoning Bridge.'},
+ {t:'Chapter 2 — PRF, Moral Lens, and Moral Perception',focus:'assumptions; inference; ambiguity; confirmation bias',practice:'What does your PRF make salient? What might it hide?',workbook:'Chapter 2 Moral Lens Lab and Navigator JSON export.'},
+ {t:'Chapter 3 — SAGE, Challenger, Suppression Gap, and Virtue Ethics',focus:'reasons; evidence; inference; testimony credibility; objection and reply',practice:'What evidence supported the warning? Why was the warning suppressed?',workbook:'Chapter 3 SAGE and Suppression Gap Lab; MCCTS Starter Packet.'},
+ {t:'Chapter 4 — Formal Tools, Formal Domination, Maathai, and Building Alongside',focus:'category error; appeal to authority; relevance; counterexample; phenomenological veto',practice:'What can this formal tool show, and what can it not show?',workbook:'Formal Domination Audit, Phenomenological Veto Check, Reform/Build/Both decision, Navigator v1.2 import.'},
+ {t:'Chapter 5 — Social Contract, Justice, Capability, and Recognition',focus:'validity; soundness; fairness concepts; false dilemma; capability reasoning',practice:'Does this justice argument depend on equal treatment, equal opportunity, equal respect, or equal capability?',workbook:'Social contract analysis, Rawlsian fairness, Nussbaum capability reflection, recognition/suppression gap bridge.'}
+];
 
-<!-- CHAPTER 5 -->
-<div class="chapter-group ch-5">
-  <div class="group-label">Chapter 5 &mdash; Nelson Mandela</div>
-  <div class="app-grid">
-    <a class="app-card" href="mandela-case-explorer.html">
-      <div class="app-card-head"><div class="app-card-icon">⚖️</div><div><div class="app-card-title">Mandela Case Explorer</div><div class="app-card-type">Case Explorer + Simulation</div></div></div>
-      <div class="app-card-body"><div class="app-card-desc">Nelson Mandela and the TRC. Three simulation runs: the TRC design, the fragmentation counterfactual, and the vulnerable population test.</div></div>
-      <div class="app-card-footer"><span class="app-card-tag tag-case">Case Explorer</span><span class="app-card-arrow">→</span></div>
-    </a>
-    <a class="app-card" href="chapter5-mandela-app.html">
-      <div class="app-card-head"><div class="app-card-icon">🕊️</div><div><div class="app-card-title">Chapter 5 Companion</div><div class="app-card-type">Companion App</div></div></div>
-      <div class="app-card-body"><div class="app-card-desc">Truth, reconciliation, and institutional design across radical difference. The TRC as a coordination architecture problem.</div></div>
-      <div class="app-card-footer"><span class="app-card-tag tag-companion">Companion</span><span class="app-card-arrow">→</span></div>
-    </a>
-  </div>
-</div>
+const later = [
+ ['The examined agent','abduction, hidden assumptions, alternative explanations'],['Virtue and character','analogy, exemplar reasoning, hasty generalization'],['Technology and agency','algorithmic authority, category error, formal domination'],['Environment and planetary responsibility','induction, uncertainty, causal reasoning'],['Economic systems and value','relevance, hidden value assumptions, false dilemma'],['Education and development','assessment validity, category error, formal domination'],['Health and care','evidence, diagnosis, testimony, phenomenological veto'],['Pluralism and public reasoning','straw man repair, argument translation, objection/reply'],['Constructor Ethics and legacy','practical reasoning, long-term effects, repair, counterfactual thinking']
+];
 
-<!-- CHAPTER 6 -->
-<div class="chapter-group ch-6">
-  <div class="group-label">Chapter 6 &mdash; Tim Palmer</div>
-  <div class="app-grid">
-    <a class="app-card" href="palmer-case-explorer.html">
-      <div class="app-card-head"><div class="app-card-icon">🌀</div><div><div class="app-card-title">Palmer Case Explorer</div><div class="app-card-type">Case Explorer + Simulation</div></div></div>
-      <div class="app-card-body"><div class="app-card-desc">Tim Palmer and ensemble forecasting. Single-model vs. ensemble architecture. The moral argument for honest uncertainty. Three simulation runs.</div></div>
-      <div class="app-card-footer"><span class="app-card-tag tag-case">Case Explorer</span><span class="app-card-arrow">→</span></div>
-    </a>
-    <a class="app-card" href="chapter6-companion.html">
-      <div class="app-card-head"><div class="app-card-icon">📊</div><div><div class="app-card-title">Chapter 6 Companion</div><div class="app-card-type">Companion App</div></div></div>
-      <div class="app-card-body"><div class="app-card-desc">The primacy of doubt. Chaos, uncertainty, and the ethics of what forecasting institutions owe the people who depend on them.</div></div>
-      <div class="app-card-footer"><span class="app-card-tag tag-companion">Companion</span><span class="app-card-arrow">→</span></div>
-    </a>
-  </div>
-</div>
+const quizA = [
+ ['Attacking a person instead of their claim.','Ad hominem.'],['Reasoning from repeated examples to a probable conclusion.','Induction.'],['Reasoning to the best explanation.','Abduction.'],['A hidden idea taken for granted.','Assumption.'],['A case that challenges a general claim.','Counterexample.'],['An argument whose conclusion follows necessarily from its premises.','Valid deductive argument.'],['A valid argument with true premises.','Sound argument.'],['Presenting only two options when more are available.','False dilemma.'],['Treating a score or label as if it captures a whole person.','Category error or formal domination.'],['The movement from observation to conclusion.','Inference.'],['In a Challenger-style case, an engineer warns of a safety problem. A supervisor says, “We should ignore her; she is always negative.” What fallacy is the supervisor using?','Ad hominem.'],['In an automated hiring case, a manager says, “The software ranked this applicant low, so the applicant must be weak.” What reasoning problem appears here?','Appeal to authority, category error, or formal domination.'],['In a Chapter 4-style case, a formal metric says a community is “unproductive,” but community members show that the metric ignores unpaid care, ecological repair, and survival labor. What critical thinking concept challenges the formal description?','Phenomenological Veto.'],['In a SAGE case analysis, a student says, “Either we launch now, or we prove we are not committed to the mission.” What fallacy is this?','False dilemma.'],['In a Field Scan, a student writes, “My friend did not text back, so they must be angry.” What critical thinking move should the student examine first?','The inference and hidden assumption.']
+];
+const quizB = [
+ 'A student says, “My classmate disagreed with me, so they must disrespect me.” What assumption is being made?',
+ 'A manager says, “The algorithm ranked this worker low, so the worker must not be valuable.” What formal domination risk appears here?',
+ 'A friend says, “If you do not agree with me completely, you are against me.” What fallacy may be involved?',
+ 'A student says, “I always fail when I procrastinate, so I will probably do badly again if I wait.” What type of reasoning is this?',
+ 'A patient says, “The chart says I am fine, but I still cannot function normally.” How might the Phenomenological Veto apply?'
+];
+const quizC = [
+ {title:'Rewrite an ad hominem attack as a fair evaluation of the claim.',weak:'“We should ignore Boisjoly’s warning because he is just being negative.”',problem:'This attacks Boisjoly’s attitude rather than evaluating the evidence behind the safety warning.',repair:'“Boisjoly’s warning should be evaluated by examining the test evidence, engineering uncertainty, and possible risk under launch conditions.”',ebb:'This repair shifts the reasoning from person-attack to evidence evaluation and helps prevent a suppression gap.',practice:'Rewrite an ad hominem attack from a case, conversation, or public debate as a fair evaluation of the actual claim.'},
+ {title:'Turn a false dilemma into at least three Move Cards.',weak:'“Either we launch now, or we prove that we are not committed to the mission.”',problem:'This presents only two options when other possible moves exist.',repair:'1. Launch as planned. 2. Delay launch until temperature-related evidence is reviewed. 3. Convene an emergency safety review with protected voice for engineering concerns.',ebb:'False dilemmas shrink the Move Card space. Ethical reasoning expands the possible field of action.',practice:'Take a two-option conflict and generate at least three possible Move Cards.'},
+ {title:'Identify an assumption in a first reaction and revise the claim.',weak:'“My instructor has not responded to my message, so they must not care.”',problem:'Hidden assumption: “A delayed response means indifference.” Alternative explanations include teaching, illness, overload, travel, grading, or a missed message.',repair:'“I do not yet know why my instructor has not responded. I should follow up respectfully before concluding that they do not care.”',ebb:'This repair slows the movement from salience to conclusion and tests the inference.',practice:'Identify one assumption in a first reaction and rewrite the claim more carefully.'},
+ {title:'Add a qualifier to a claim that is too strong.',weak:'“Formal institutions always fail communities.”',problem:'The claim is too broad. Some institutions fail communities, but others can support justice, repair, and capability.',repair:'“Formal institutions can fail communities when their categories and policies become uncorrectable by lived experience, but institutions can also support justice when they remain responsive, accountable, and open to repair.”',ebb:'This avoids hasty generalization while preserving the critique of formal domination.',practice:'Take a strong claim and add a qualifier that makes it more accurate and defensible.'},
+ {title:'Create a rebuttal and reply for a public ethical argument.',weak:'Claim: “Automated hiring systems should be open to challenge when applicants believe they have been misclassified.”',problem:'Possible rebuttal: “Employers need efficient screening systems because they receive too many applications to review manually.”',repair:'Reply: “Efficiency matters, but it does not justify uncorrectable misclassification. A fair system can preserve efficiency while allowing limited challenge procedures when applicants have reason to believe the system misdescribed them.”',ebb:'This reply balances formal tool usefulness with the Phenomenological Veto.',practice:'Create one rebuttal and one reply for your own public ethical claim.'}
+];
 
-<!-- CHAPTER 7 -->
-<div class="chapter-group ch-7">
-  <div class="group-label">Chapter 7 &mdash; Doyne Farmer</div>
-  <div class="app-grid">
-    <a class="app-card" href="farmer-case-explorer.html">
-      <div class="app-card-head"><div class="app-card-icon">🏭</div><div><div class="app-card-title">Farmer Case Explorer</div><div class="app-card-type">Case Explorer + Simulation</div></div></div>
-      <div class="app-card-body"><div class="app-card-desc">Doyne Farmer and agent-based economics. Three runs: Representative Agent, Heterogeneous Agents, Rawlsian Test. The COVID prediction and what standard models missed.</div></div>
-      <div class="app-card-footer"><span class="app-card-tag tag-case">Case Explorer</span><span class="app-card-arrow">→</span></div>
-    </a>
-    <a class="app-card" href="chapter7-farmer-app.html">
-      <div class="app-card-head"><div class="app-card-icon">🔬</div><div><div class="app-card-title">Chapter 7 Companion</div><div class="app-card-type">Companion App</div></div></div>
-      <div class="app-card-body"><div class="app-card-desc">The invisible people. Representative agent error, heterogeneous modeling, social block fields, and the Rawlsian test. Your field map exercise.</div></div>
-      <div class="app-card-footer"><span class="app-card-tag tag-companion">Companion</span><span class="app-card-arrow">→</span></div>
-    </a>
-  </div>
-</div>
-
-<!-- CHAPTER 8 -->
-<div class="chapter-group ch-8">
-  <div class="group-label">Chapter 8 &mdash; The Simulated History of Ethics</div>
-  <div class="app-grid">
-    <a class="app-card" href="ethical-theories-app.html">
-      <div class="app-card-head"><div class="app-card-icon">🏛️</div><div><div class="app-card-title">Ethical Theories App</div><div class="app-card-type">Nine Stations + Simulation</div></div></div>
-      <div class="app-card-body"><div class="app-card-desc">What were the traditions actually measuring? Nine stations from Socrates to Existentialism. Conditions Cascade visualization. Composite Run with all nine conditions. The Complex PRF.</div></div>
-      <div class="app-card-footer"><span class="app-card-tag tag-simulation">Simulation</span><span class="app-card-arrow">→</span></div>
-    </a>
-  </div>
-</div>
-
-<!-- CHAPTER 9 -->
-<div class="chapter-group ch-9">
-  <div class="group-label">Chapter 9 &mdash; The World Values Map</div>
-  <div class="app-grid">
-    <a class="app-card" href="chapter9-wvm-app.html">
-      <div class="app-card-head"><div class="app-card-icon">&#127758;</div><div><div class="app-card-title">Where Are You Standing?</div><div class="app-card-type">Cultural PRF &middot; Cross-Cultural Simulation</div></div></div>
-      <div class="app-card-body"><div class="app-card-desc">The World Values Map applied to the simulation. Two axes, five worldview categories, the thermodynamic logic of why values shift with conditions, IPS-WVM connection, and AMC forward pointer.</div></div>
-      <div class="app-card-footer"><span class="app-card-tag tag-simulation">Simulation</span><span class="app-card-arrow">&#8594;</span></div>
-    </a>
-  </div>
-</div>
-
-<!-- CHAPTER 10 -->
-<div class="chapter-group ch-10">
-  <div class="group-label">Chapter 10 &mdash; The Social Contract</div>
-  <div class="app-grid">
-    <a class="app-card" href="chapter10-social-contract-app.html">
-      <div class="app-card-head"><div class="app-card-icon">&#x2696;&#xFE0F;</div><div><div class="app-card-title">Who Gave Them the Right?</div><div class="app-card-type">Three Architectures &middot; IPS Profiles &middot; Simulation</div></div></div>
-      <div class="app-card-body"><div class="app-card-desc">Hobbes, Locke, and Rousseau as institutional architectures mapped to IPS parameters. Characteristic failure mode per architecture. CPG five criteria as IPS requirements. The Hybrid Citizen framework.</div></div>
-      <div class="app-card-footer"><span class="app-card-tag tag-simulation">Simulation</span><span class="app-card-arrow">&#8594;</span></div>
-    </a>
-  </div>
-</div>
-
-<!-- INTERLUDE -->
-<div class="chapter-group ch-interlude">
-  <div class="group-label">Interlude &mdash; Ethics of the Framework</div>
-  <div class="app-grid">
-    <a class="app-card" href="interlude-ethics-framework-app.html">
-      <div class="app-card-head"><div class="app-card-icon">&#9651;</div><div><div class="app-card-title">Ethics of the Framework</div><div class="app-card-type">Agency Conditions Principle &middot; Bridge Reading</div></div></div>
-      <div class="app-card-body"><div class="app-card-desc">The normative core stated in full: ACP, entropy-exporting institutions, Coherence-Preserving Governance, temporal commons, and the six-question diagnostic for the applied sequence ahead.</div></div>
-      <div class="app-card-footer"><span class="app-card-tag tag-reference">Reading</span><span class="app-card-arrow">&#8594;</span></div>
-    </a>
-  </div>
-</div>
-
-<!-- RUST BELT -->
-<div class="chapter-group ch-rustbelt">
-  <div class="group-label">Rust Belt Case Study &mdash; Nine Lenses Applied</div>
-  <div class="app-grid">
-    <a class="app-card" href="rust-belt-app.html">
-      <div class="app-card-head"><div class="app-card-icon">&#127981;</div><div><div class="app-card-title">Rust Belt &mdash; Nine Ethical Lenses</div><div class="app-card-type">Case Study + Three-Part Simulation</div></div></div>
-      <div class="app-card-body"><div class="app-card-desc">The Rust Belt collapse examined through all nine ethical traditions simultaneously. Pre-collapse, collapse, and current state metrics. The synthesis tab shows what no single lens can see alone.</div></div>
-      <div class="app-card-footer"><span class="app-card-tag tag-case">Case Study</span><span class="app-card-arrow">&#8594;</span></div>
-    </a>
-  </div>
-</div>
-
-<div class="divider"></div>
-
-<!-- APPLIED SEQUENCE -->
-<div class="chapter-group ch-prologue">
-  <div class="group-label">Prologue &mdash; The Pattern Beneath Ethics</div>
-  <div class="app-grid">
-    <a class="app-card" href="prologue-pattern-app.html">
-      <div class="app-card-head"><div class="app-card-icon">&#127381;</div><div><div class="app-card-title">The Pattern Beneath Ethics</div><div class="app-card-type">Scale-Free Laws &middot; Agential Hijacking &middot; Course Map</div></div></div>
-      <div class="app-card-body"><div class="app-card-desc">The scale-invariant mechanism underlying every chapter: parasitic overwrite operating identically at biological, psychological, institutional, and civilizational scales. The mantis case. Course architecture revealed.</div></div>
-      <div class="app-card-footer"><span class="app-card-tag tag-companion">Prologue</span><span class="app-card-arrow">&#8594;</span></div>
-    </a>
-  </div>
-</div>
-
-<div class="chapter-group ch-11">
-  <div class="group-label">Chapter 11 &mdash; Economic Systems (Applied Sequence &middot; Movement 1)</div>
-  <div class="app-grid">
-    <a class="app-card" href="chapter11-economic-systems-app.html">
-      <div class="app-card-head"><div class="app-card-icon">&#127970;</div><div><div class="app-card-title">What the Economy Does to Coherent Agency</div><div class="app-card-type">IPS Diagnostic &middot; BioBond &middot; Peterson et al. 2025</div></div></div>
-      <div class="app-card-body"><div class="app-card-desc">The False Choice thesis. Nine fairness dimensions as IPS parameters. Florida nursing home ownership archetypes (Peterson/AARP 2025 &amp; CMS data). PE acquisition trajectory 2019&ndash;2024. BioBond instruments. True Solvency Accounting. Three economic architecture simulation configs.</div></div>
-      <div class="app-card-footer"><span class="app-card-tag tag-simulation">Simulation + IPS</span><span class="app-card-arrow">&#8594;</span></div>
-    </a>
-  </div>
-</div>
-
-<div class="chapter-group ch-12">
-  <div class="group-label">Chapter 12 &mdash; Governance Systems (Applied Sequence &middot; Movement 2)</div>
-  <div class="app-grid">
-    <a class="app-card" href="chapter12-governance-app.html">
-      <div class="app-card-head"><div class="app-card-icon">&#127981;</div><div><div class="app-card-title">Governance Systems and the Routing Quality Gap</div><div class="app-card-type">Four Configs &middot; Boisjoly T4 &middot; Type 1/Type 2 Failure</div></div></div>
-      <div class="app-card-body"><div class="app-card-desc">Procedural vs. substantive legitimacy. Config A (Captured), B (Coherence-Preserving), C (Reform Transition), D (Boisjoly T4: agent FHRI 82, absorbed 67.7 pts). Type 1 vs. Type 2 routing quality failure distinction.</div></div>
-      <div class="app-card-footer"><span class="app-card-tag tag-simulation">Simulation</span><span class="app-card-arrow">&#8594;</span></div>
-    </a>
-  </div>
-</div>
-
-<div class="chapter-group ch-13">
-  <div class="group-label">Chapter 13 &mdash; Information Systems (Applied Sequence &middot; Movement 3)</div>
-  <div class="app-grid">
-    <a class="app-card" href="chapter13-infosystems-app.html">
-      <div class="app-card-head"><div class="app-card-icon">&#128225;</div><div><div class="app-card-title">Information Systems and the Second Filter</div><div class="app-card-type">Web of Acquisition &middot; &sigma;/&mu; Filter Asymmetry &middot; AI Ethics</div></div></div>
-      <div class="app-card-body"><div class="app-card-desc">The filter upstream of governance. CSER Cambridge web of acquisition framework. IPS mechanism of filter asymmetry: &sigma; (morphic residue) and &mu; (incentive misalignment). Why 80% structural improvement is the honest result. Three simulation configs with IPS profiles.</div></div>
-      <div class="app-card-footer"><span class="app-card-tag tag-simulation">Simulation</span><span class="app-card-arrow">&#8594;</span></div>
-    </a>
-  </div>
-</div>
-
-<div class="chapter-group ch-14">
-  <div class="group-label">Chapter 14 &mdash; Existential Risk (Applied Sequence &middot; Movement 4)</div>
-  <div class="app-grid">
-    <a class="app-card" href="chapter14-existential-risk-app.html">
-      <div class="app-card-head"><div class="app-card-icon">&#127759;</div><div><div class="app-card-title">Existential Risk, Leverage, and the AMC</div><div class="app-card-type">IPS Field Profiles &middot; Iron Cage &middot; T1/T2 Counterfactuals</div></div></div>
-      <div class="app-card-body"><div class="app-card-desc">Meadows leverage hierarchy. Iron Cage (high-&sigma;/&rho;) and Obsolescence Trap (high-&epsilon;/&mu;) failure modes. Four-institution IPS field profiles. Trust vector trajectory. T1 vs. T2 intervention types. Paris Agreement analysis. AMC as field architecture.</div></div>
-      <div class="app-card-footer"><span class="app-card-tag tag-simulation">Multi-Institutional Field</span><span class="app-card-arrow">&#8594;</span></div>
-    </a>
-  </div>
-</div>
-
-<div class="divider"></div>
-
-<!-- REFERENCE TOOLS -->
-<div class="chapter-group ch-tools">
-  <div class="group-label">Reference Tools &amp; Labs</div>
-  <div class="app-grid">
-    <a class="app-card" href="ucp-metrics-reference.html">
-      <div class="app-card-head"><div class="app-card-icon">📐</div><div><div class="app-card-title">UCP Metrics Reference</div><div class="app-card-type">Technical Reference</div></div></div>
-      <div class="app-card-body"><div class="app-card-desc">Complete technical documentation for every simulation metric: formulas, ranges, research grounding, and parameter interactions.</div></div>
-      <div class="app-card-footer"><span class="app-card-tag tag-reference">Reference</span><span class="app-card-arrow">→</span></div>
-    </a>
-    <a class="app-card" href="ucp-student-guide.html">
-      <div class="app-card-head"><div class="app-card-icon">📖</div><div><div class="app-card-title">Student Guide</div><div class="app-card-type">How to Use the Simulation</div></div></div>
-      <div class="app-card-body"><div class="app-card-desc">Plain-language guide to running simulations, reading metrics, and connecting results to the course concepts.</div></div>
-      <div class="app-card-footer"><span class="app-card-tag tag-reference">Guide</span><span class="app-card-arrow">→</span></div>
-    </a>
-    <a class="app-card" href="metrics-calibration-lab.html">
-      <div class="app-card-head"><div class="app-card-icon">🧪</div><div><div class="app-card-title">Metrics Calibration Lab</div><div class="app-card-type">Interactive Lab</div></div></div>
-      <div class="app-card-body"><div class="app-card-desc">Hands-on parameter exploration. Adjust worldview distributions and evidence architectures and watch metrics respond in real time.</div></div>
-      <div class="app-card-footer"><span class="app-card-tag tag-simulation">Lab</span><span class="app-card-arrow">→</span></div>
-    </a>
-    <a class="app-card" href="worldview-comparison.html">
-      <div class="app-card-head"><div class="app-card-icon">🌐</div><div><div class="app-card-title">Worldview Comparison</div><div class="app-card-type">Reference Tool</div></div></div>
-      <div class="app-card-body"><div class="app-card-desc">Side-by-side comparison of the five worldview frameworks. What each sees, what each misses, and how they interact in the simulation.</div></div>
-      <div class="app-card-footer"><span class="app-card-tag tag-reference">Reference</span><span class="app-card-arrow">→</span></div>
-    </a>
-    <a class="app-card" href="trans-temporal-explorer.html">
-      <div class="app-card-head"><div class="app-card-icon">⏳</div><div><div class="app-card-title">Trans-Temporal Explorer</div><div class="app-card-type">Research Tool</div></div></div>
-      <div class="app-card-body"><div class="app-card-desc">Generational transmission of coordination capacity. How institutional patterns propagate across time and what degrades or improves them.</div></div>
-      <div class="app-card-footer"><span class="app-card-tag tag-reference">Research</span><span class="app-card-arrow">→</span></div>
-    </a>
-    <a class="app-card" href="cte-challenge.html">
-      <div class="app-card-head"><div class="app-card-icon">🏈</div><div><div class="app-card-title">CTE Challenge</div><div class="app-card-type">Case Study</div></div></div>
-      <div class="app-card-body"><div class="app-card-desc">The NFL's CTE crisis as a coordination failure case. Capability-based coordination in practice.</div></div>
-      <div class="app-card-footer"><span class="app-card-tag tag-case">Case Study</span><span class="app-card-arrow">→</span></div>
-    </a>
-  </div>
-</div>
-
-<div style="text-align:center;padding:2rem 0 1rem;font-family:'JetBrains Mono',monospace;font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.2)">
-  Ethics Beyond Boundaries &middot; Saint Petersburg College &middot; Ethics Institute &middot; &copy; 2026
-</div>
-
-</div>
+function render(){
+ document.getElementById('termList').innerHTML = terms.map((x,i)=>`<details class="searchable"><summary>${i+1}. ${x.t}</summary><div class="detail-body"><p>${x.d}</p><p><strong>Example:</strong> ${x.ex}</p><p><strong>EBB connection:</strong> ${x.ebb}</p><blockquote>${x.q}</blockquote></div></details>`).join('');
+ document.getElementById('fallacyList').innerHTML = fallacies.map((x,i)=>`<details class="searchable"><summary>${i+1}. ${x.t}</summary><div class="detail-body"><p>${x.d}</p><p><strong>Example:</strong> ${x.ex}</p><p><strong>Why it is weak:</strong> ${x.weak}</p><p><strong>EBB connection:</strong> ${x.ebb}</p><blockquote>${x.q}</blockquote></div></details>`).join('');
+ document.getElementById('chapterMap').innerHTML = chapters.map((x,i)=>`<details class="searchable"><summary>${x.t}</summary><div class="detail-body"><p><strong>Critical thinking focus:</strong> ${x.focus}</p><p><strong>Practice:</strong> ${x.practice}</p><p><strong>Workbook connection:</strong> ${x.workbook}</p></div></details>`).join('') + `<details><summary>Chapters 6–14 — Pending Final Course Sequence</summary><div class="detail-body"><p>The following tools should be distributed once the final sequence is confirmed.</p><table><thead><tr><th>Later course theme</th><th>Possible CT focus</th></tr></thead><tbody>${later.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join('')}</tbody></table></div></details>`;
+ document.getElementById('quizA').innerHTML = `<ol>${quizA.map(q=>`<li><p>${q[0]}</p><p><strong>Answer:</strong> ${q[1]}</p></li>`).join('')}</ol>`;
+ document.getElementById('quizB').innerHTML = `<ol>${quizB.map(q=>`<li>${q}</li>`).join('')}</ol>`;
+ document.getElementById('quizC').innerHTML = quizC.map((x,i)=>`<details open class="searchable"><summary>${i+1}. ${x.title}</summary><div class="detail-body"><p><strong>Weak reasoning:</strong> ${x.weak}</p><p><strong>Problem:</strong> ${x.problem}</p><p><strong>Repaired version:</strong> ${x.repair}</p><p><strong>EBB connection:</strong> ${x.ebb}</p><blockquote>${x.practice}</blockquote></div></details>`).join('');
+}
+render();
+function expandAll(){document.querySelectorAll('details').forEach(d=>d.open=true)}
+function collapseAll(){document.querySelectorAll('details').forEach(d=>d.open=false)}
+function copyPractice(){
+ const labels=[...document.querySelectorAll('.practice-sheet label')]; const areas=[...document.querySelectorAll('.practice-sheet textarea')];
+ const text=labels.map((l,i)=>`${l.textContent}\n${areas[i].value || ''}`).join('\n\n');
+ navigator.clipboard.writeText(text).then(()=>alert('Practice sheet text copied.'))
+}
+function clearPractice(){if(confirm('Clear typed practice responses on this page?')) document.querySelectorAll('.practice-sheet textarea').forEach(t=>t.value='')}
+document.getElementById('searchBox').addEventListener('input', e=>{
+ const q=e.target.value.trim().toLowerCase();
+ document.querySelectorAll('.searchable').forEach(el=>{
+   const hit=el.textContent.toLowerCase().includes(q); el.classList.toggle('hide', q && !hit); if(q && hit) el.open=true;
+ });
+});
+</script>
 </body>
 </html>
